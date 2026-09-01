@@ -17,3 +17,6 @@ Thumbs.db
 
 # Visual Studio Code
 .vscode/
+
+# Dataset grande
+dataset/listingsAndReviews.json

@@ -1,0 +1,11 @@
+services:
+  mongodb:
+    image: mongo:8.0
+    ports:
+      - "127.0.0.1:27017:27017"
+    volumes:
+      - airbnb_mongo_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  airbnb_mongo_data:
