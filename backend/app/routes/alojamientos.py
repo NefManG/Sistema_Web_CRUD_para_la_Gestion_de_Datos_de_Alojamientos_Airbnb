@@ -4,7 +4,7 @@ from uuid import uuid4
 
 from app.database import alojamientos_collection
 from app.schemas import AlojamientoCreate, AlojamientoUpdate
-
+from fastapi import APIRouter, HTTPException, Query
 
 router = APIRouter(
     prefix="/alojamientos",
@@ -13,10 +13,17 @@ router = APIRouter(
 
 
 @router.get("/")
-async def listar_alojamientos():
+async def listar_alojamientos(
+    page: int = Query(default=1, ge=1),
+    limit: int = Query(default=5, ge=1, le=100),
+):
+    total = alojamientos_collection.count_documents({})
 
-    alojamientos = list(
-        alojamientos_collection.find(
+    skip = (page - 1) * limit
+
+    cursor = (
+        alojamientos_collection
+        .find(
             {},
             {
                 "_id": 1,
@@ -26,17 +33,31 @@ async def listar_alojamientos():
                 "accommodates": 1,
                 "bedrooms": 1,
                 "beds": 1,
-                "price": 1
-            }
-        ).limit(20)
+                "price": 1,
+            },
+        )
+        .skip(skip)
+        .limit(limit)
     )
 
-    for alojamiento in alojamientos:
-        precio = alojamiento["price"].to_decimal()
-        alojamiento["price"] = f"{precio:.2f}"
+    alojamientos = []
 
-    return alojamientos
+    for alojamiento in cursor:
+        if "price" in alojamiento:
+            precio = alojamiento["price"].to_decimal()
+            alojamiento["price"] = f"{precio:.2f}"
 
+        alojamientos.append(alojamiento)
+
+    total_pages = (total + limit - 1) // limit
+
+    return {
+        "items": alojamientos,
+        "page": page,
+        "limit": limit,
+        "total": total,
+        "total_pages": total_pages,
+    }
 
 @router.get("/{id}")
 async def obtener_alojamiento(id: str):

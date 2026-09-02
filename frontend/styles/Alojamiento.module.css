@@ -1,0 +1,44 @@
+.tableContainer {
+  width: 100%;
+  margin-top: 24px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.row {
+  height: 58px;
+}
+
+.nombre {
+  width: 28%;
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tipoPropiedad {
+  width: 16%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tipoHabitacion {
+  width: 18%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.numero {
+  width: 10%;
+}
+
+.precio {
+  width: 10%;
+}
