@@ -1,6 +1,5 @@
 import {Box,IconButton,Paper,Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Tooltip,} from "@mui/material";
 import {Delete as DeleteIcon,Edit as EditIcon,Visibility as VisibilityIcon,} from "@mui/icons-material";
-
 function AlojamientoTable({
   alojamientos,
   onVer,
@@ -121,6 +120,4 @@ function AlojamientoTable({
     </TableContainer>
   );
 }
-
-
 export default AlojamientoTable;

@@ -1,12 +1,4 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@mui/material";
-
+import {Button,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle,} from "@mui/material";
 
 function DeleteDialog({
   open,
@@ -53,6 +45,4 @@ function DeleteDialog({
     </Dialog>
   );
 }
-
-
 export default DeleteDialog;

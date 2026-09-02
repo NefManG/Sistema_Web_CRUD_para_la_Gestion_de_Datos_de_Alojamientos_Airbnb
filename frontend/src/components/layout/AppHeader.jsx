@@ -1,6 +1,4 @@
 import { AppBar, Toolbar, Typography,} from "@mui/material";
-
-
 function AppHeader() {
   return (
     <AppBar position="static">
@@ -12,6 +10,4 @@ function AppHeader() {
     </AppBar>
   );
 }
-
-
 export default AppHeader;

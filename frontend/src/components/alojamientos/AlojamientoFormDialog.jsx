@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import {
   Button,
   Dialog,
@@ -9,7 +8,6 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-
 
 const valoresIniciales = {
   name: "",
@@ -21,7 +19,6 @@ const valoresIniciales = {
   price: "",
 };
 
-
 function AlojamientoFormDialog({
   open,
   onClose,
@@ -31,12 +28,10 @@ function AlojamientoFormDialog({
 }) {
   const [formulario, setFormulario] = useState(valoresIniciales);
 
-
 useEffect(() => {
   if (!open) {
     return;
   }
-
   if (alojamiento) {
     setFormulario({
       name: alojamiento.name ?? "",
@@ -51,8 +46,6 @@ useEffect(() => {
     setFormulario(valoresIniciales);
   }
 }, [open, alojamiento]);
-
-
   function manejarCambio(event) {
     const { name, value } = event.target;
 
@@ -62,10 +55,8 @@ useEffect(() => {
     });
   }
 
-
   function manejarEnvio(event) {
     event.preventDefault();
-
     const datosAlojamiento = {
       name: formulario.name,
       property_type: formulario.property_type,
@@ -78,8 +69,6 @@ useEffect(() => {
 
     onGuardar(datosAlojamiento);
   }
-
-
   return (
     <Dialog
       open={open}
@@ -88,19 +77,15 @@ useEffect(() => {
       maxWidth="sm"
     >
       <form onSubmit={manejarEnvio}>
-
         <DialogTitle>
           {alojamiento ? "Editar alojamiento" : "Nuevo alojamiento"}
         </DialogTitle>
-
         <DialogContent>
-
           <Grid
             container
             spacing={2}
             sx={{ mt: 0.5 }}
           >
-
             <Grid size={12}>
               <TextField
                 name="name"
@@ -111,7 +96,6 @@ useEffect(() => {
                 required
               />
             </Grid>
-
 
             <Grid size={6}>
               <TextField
@@ -124,7 +108,6 @@ useEffect(() => {
               />
             </Grid>
 
-
             <Grid size={6}>
               <TextField
                 name="room_type"
@@ -135,7 +118,6 @@ useEffect(() => {
                 required
               />
             </Grid>
-
 
             <Grid size={4}>
               <TextField
@@ -152,7 +134,6 @@ useEffect(() => {
               />
             </Grid>
 
-
             <Grid size={4}>
               <TextField
                 name="bedrooms"
@@ -167,7 +148,6 @@ useEffect(() => {
                 }}
               />
             </Grid>
-
 
             <Grid size={4}>
               <TextField
@@ -184,7 +164,6 @@ useEffect(() => {
               />
             </Grid>
 
-
             <Grid size={12}>
               <TextField
                 name="price"
@@ -200,21 +179,16 @@ useEffect(() => {
                 }}
               />
             </Grid>
-
           </Grid>
-
         </DialogContent>
 
-
         <DialogActions>
-
           <Button
             onClick={onClose}
             disabled={guardando}
           >
             Cancelar
           </Button>
-
           <Button
             type="submit"
             variant="contained"
@@ -229,11 +203,8 @@ useEffect(() => {
                 : "Guardar"}
           </Button>
         </DialogActions>
-
       </form>
     </Dialog>
   );
 }
-
-
 export default AlojamientoFormDialog;
